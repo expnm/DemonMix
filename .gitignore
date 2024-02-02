@@ -1,3 +1,5 @@
+.vs
+*.sln
 Binaries
 Build
 DerivedDataCache
