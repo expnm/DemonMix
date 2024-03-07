@@ -525,7 +525,7 @@ void ADMLandscapeGenerator::CalculatePlaneAsync()
             const float LocationZ = CalculateZ(FVector2D(LocationX, LocationY));
             VerticesExt.Emplace(FVector(LocationX, LocationY, LocationZ));
 
-            // TODO: с UV бывают проблемы в виде полос + сетка неравномерная:
+            // DONE: с UV бывают проблемы в виде полос + сетка неравномерная:
             // на 51 плитке при: [3x3] [40x40m] [32x32]
             // на 25 плитке при: [3x3] [40x40m] [64x64]
             // на 25 плитке при: [3x3] [20x20m] [64x64]
@@ -534,8 +534,8 @@ void ADMLandscapeGenerator::CalculatePlaneAsync()
             // на 10 плитке при: [5x5] [25x25m] [128x128]
             // геометрия накладывается на геометрию или неправильная формула расчета UV? ошибка в приведении типов?
             // TODO: нужно ли каждый раз рассчитывать UV?
-            const float UVX = (iCellX + PlaneTile->GetTile().X * CellCount) * CellLen / 100;
-            const float UVY = (iCellY + PlaneTile->GetTile().Y * CellCount) * CellLen / 100;
+            const float UVX = iCellX * CellLen / TileLen;
+            const float UVY = iCellY * CellLen / TileLen;
             UVsExt.Emplace(FVector2D(UVX, UVY));
         }
     }
